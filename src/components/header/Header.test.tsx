@@ -3,20 +3,25 @@ import { Header } from './Header';
 import { ThemeProvider } from '@/providers/ThemeProvider';
 import { vi } from 'vitest';
 import { ComponentProps } from 'react';
-
+import { useTranslations } from 'next-intl';
+import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import userEvent from '@testing-library/user-event';
 const mockReplace = vi.fn();
+const mockPathname = vi.fn();
+const mockRouter = vi.fn();
+const mockTranslations = vi.fn((key: string) => key) as unknown as ReturnType<
+  typeof useTranslations
+>;
 
 // Mock next-intl hooks and navigation
 vi.mock('@/i18n/navigation', () => ({
-  usePathname: () => '/en',
-  useRouter: () => ({
-    replace: mockReplace,
-  }),
+  usePathname: () => mockPathname(),
+  useRouter: () => mockRouter(),
   Link: ({ children, ...props }: ComponentProps<'a'>) => <a {...props}>{children}</a>,
 }));
 
 vi.mock('next-intl', () => ({
-  useTranslations: () => (key: string) => key,
+  useTranslations: () => mockTranslations,
   useLocale: () => 'en',
 }));
 
@@ -36,6 +41,13 @@ vi.mock('@radix-ui/react-dropdown-menu', () => ({
 }));
 
 describe('Header', () => {
+  beforeEach(() => {
+    mockPathname.mockReturnValue('/blog');
+    mockRouter.mockReturnValue({
+      replace: mockReplace,
+    } as unknown as AppRouterInstance);
+  });
+
   it('renders the header with navigation links', () => {
     render(
       <ThemeProvider>
@@ -47,18 +59,34 @@ describe('Header', () => {
     expect(screen.getByRole('navigation')).toBeInTheDocument();
     expect(screen.getByText('posts')).toBeInTheDocument();
     expect(screen.getByText('about')).toBeInTheDocument();
-    expect(screen.getByText('projects')).toBeInTheDocument();
   });
 
-  it('renders the theme toggle button', () => {
+  it('renders the theme toggle buttons for both mobile and desktop', () => {
     render(
       <ThemeProvider>
         <Header />
       </ThemeProvider>
     );
 
-    const themeToggle = screen.getByRole('button', { name: /toggle theme/i });
-    expect(themeToggle).toBeInTheDocument();
+    const mobileThemeToggle = screen.getByTestId('theme-toggle-mobile');
+    const desktopThemeToggle = screen.getByTestId('theme-toggle-desktop');
+
+    expect(mobileThemeToggle).toBeInTheDocument();
+    expect(desktopThemeToggle).toBeInTheDocument();
+  });
+
+  it('renders the language selector buttons for both mobile and desktop', () => {
+    render(
+      <ThemeProvider>
+        <Header />
+      </ThemeProvider>
+    );
+
+    const mobileLanguageSelector = screen.getByTestId('language-selector-mobile');
+    const desktopLanguageSelector = screen.getByTestId('language-selector-desktop');
+
+    expect(mobileLanguageSelector).toBeInTheDocument();
+    expect(desktopLanguageSelector).toBeInTheDocument();
   });
 
   it('toggles theme when theme button is clicked', () => {
@@ -68,37 +96,28 @@ describe('Header', () => {
       </ThemeProvider>
     );
 
-    const themeToggle = screen.getByRole('button', { name: /toggle theme/i });
+    const themeToggle = screen.getByTestId('theme-toggle-desktop');
     fireEvent.click(themeToggle);
 
     const html = document.documentElement;
     expect(html.classList.contains('dark')).toBe(true);
   });
 
-  it('renders the language selector', () => {
+  it('changes locale when language is selected', async () => {
     render(
       <ThemeProvider>
         <Header />
       </ThemeProvider>
     );
 
-    const languageSelector = screen.getByRole('button', { name: 'languages.en' });
-    expect(languageSelector).toBeInTheDocument();
-  });
+    const languageSelector = screen.getByTestId('language-selector-desktop');
 
-  it('changes locale when language is selected', () => {
-    render(
-      <ThemeProvider>
-        <Header />
-      </ThemeProvider>
-    );
+    await userEvent.click(languageSelector);
 
-    const languageSelector = screen.getByRole('button', { name: 'languages.en' });
-    fireEvent.click(languageSelector);
+    const ptOption = await screen.findAllByTestId('language-option-pt');
 
-    const ptOption = screen.getByText('languages.pt');
-    fireEvent.click(ptOption);
+    await userEvent.click(ptOption[0]);
 
-    expect(mockReplace).toHaveBeenCalledWith('/en', { locale: 'pt' });
+    expect(mockReplace).toHaveBeenCalledWith('/blog', { locale: 'pt' });
   });
 });
