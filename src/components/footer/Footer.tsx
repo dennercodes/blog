@@ -24,7 +24,7 @@ const socialLinks: SocialLink[] = [
 
 export function Footer() {
   return (
-    <footer className="w-full border-t border-border bg-header py-6">
+    <footer className="w-full bg-header py-6 fixed bottom-0 left-0 right-0">
       <div className="container flex max-w-[670px] items-center justify-center space-x-4 px-5 mx-auto">
         {socialLinks.map((social) => (
           <Link
@@ -35,7 +35,7 @@ export function Footer() {
             className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-button-secondary-bg text-button-secondary-text transition-colors hover:bg-button-hover"
             aria-label={social.label}
           >
-            <social.icon className="h-4 w-4" />
+            <social.icon className="h-6 w-6" />
           </Link>
         ))}
       </div>

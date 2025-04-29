@@ -1,23 +1,35 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 0 0% 100%;
+    --background-secondary: 210 40% 96.1%;
+    --text-primary: 222.2 84% 4.9%;
+    --text-secondary: 215.4 16.3% 46.9%;
+    --button-secondary-bg: 210 40% 96.1%;
+    --button-secondary-text: 222.2 47.4% 11.2%;
+    --button-hover: 210 40% 90%;
+    --link: 221.2 83.2% 53.3%;
+    --header: 0 0% 100%;
+    --card: 0 0% 100%;
+    --border: 214.3 31.8% 91.4%;
   }
-}
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --background-secondary: 217.2 32.6% 17.5%;
+    --text-primary: 210 40% 98%;
+    --text-secondary: 215 20.2% 65.1%;
+    --button-secondary-bg: 217.2 32.6% 17.5%;
+    --button-secondary-text: 210 40% 98%;
+    --button-hover: 217.2 32.6% 25%;
+    --link: 217.2 91.2% 59.8%;
+    --header: 222.2 84% 4.9%;
+    --card: 222.2 84% 4.9%;
+    --border: 217.2 32.6% 17.5%;
+  }
+} 
 
 body {
   background: var(--background);

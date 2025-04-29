@@ -22,12 +22,17 @@ export function ThemeToggle() {
 
   return (
     <button
-      className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-button-secondary-bg text-button-secondary-text hover:bg-button-hover"
+      className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-button-secondary-bg text-button-secondary-text hover:bg-button-hover cursor-pointer"
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
     >
       <span className="sr-only">Toggle theme</span>
-      <SunIcon className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-      <MoonIcon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+      {
+        theme === 'dark' ? (
+          <SunIcon className="h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+        ) : (
+          <MoonIcon className="h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+        )
+      }
     </button>
   );
 } 
