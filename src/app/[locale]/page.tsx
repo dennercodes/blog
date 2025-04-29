@@ -1,17 +1,16 @@
 import { redirect } from '@/i18n/navigation';
 import { setRequestLocale } from "next-intl/server";
 
-
-export interface HomeProps {
+interface HomeProps {
   params: {
-    lang: string;
+    locale: string;
   };
 }
 
-export default function HomePage({ params }: HomeProps) {
-  setRequestLocale(params.lang);
+export default async function HomePage({ params }: HomeProps) {
+  setRequestLocale(params.locale);
   return redirect({
     href: '/blog',
-    locale: params.lang,
+    locale: params.locale,
   });
 }
