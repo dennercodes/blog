@@ -7,12 +7,12 @@ import { SocialLink } from './types';
 const socialLinks: SocialLink[] = [
   {
     icon: LinkedInLogoIcon,
-    href: 'https://linkedin.com/in/dennerrondinely',
+    href: 'https://www.linkedin.com/in/denner-rondinely-da-silva',
     label: 'LinkedIn',
   },
   {
     icon: InstagramLogoIcon,
-    href: 'https://instagram.com/dennerrondinely',
+    href: 'https://instagram.com/denner.land',
     label: 'Instagram',
   },
   {

@@ -8,11 +8,11 @@ describe('Footer', () => {
     
     expect(screen.getByLabelText('LinkedIn')).toHaveAttribute(
       'href',
-      'https://linkedin.com/in/dennerrondinely'
+      'https://www.linkedin.com/in/denner-rondinely-da-silva'
     );
     expect(screen.getByLabelText('Instagram')).toHaveAttribute(
       'href',
-      'https://instagram.com/dennerrondinely'
+      'https://instagram.com/denner.land'
     );
     expect(screen.getByLabelText('GitHub')).toHaveAttribute(
       'href',
