@@ -12,21 +12,21 @@ describe('Avatar', () => {
   it('should apply gradient background styles', () => {
     render(<Avatar initials="DR" />);
 
-    const avatarRoot = screen.getByText('DR').closest('div');
+    const avatarRoot = screen.getByText('DR').parentElement;
     expect(avatarRoot).toHaveClass('bg-gradient-to-r', 'from-blue-600', 'to-purple-600');
   });
 
   it('should have correct dimensions', () => {
     render(<Avatar initials="DR" />);
 
-    const avatarRoot = screen.getByText('DR').closest('div');
+    const avatarRoot = screen.getByText('DR').parentElement;
     expect(avatarRoot).toHaveClass('h-8', 'w-8');
   });
 
   it('should have rounded corners', () => {
     render(<Avatar initials="DR" />);
 
-    const avatarRoot = screen.getByText('DR').closest('div');
+    const avatarRoot = screen.getByText('DR').parentElement;
     expect(avatarRoot).toHaveClass('rounded-full');
   });
 });

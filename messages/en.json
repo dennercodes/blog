@@ -11,7 +11,7 @@
     "projects": "Projects"
   },
   "blog": {
-    "title": "Blog",
+    "title": "Code, Coffee and Curiosity",
     "description": "My thoughts on web development, React, TypeScript and best practices.",
     "publishedOn": "Published on {date}",
     "readMore": "Read more",
