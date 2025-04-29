@@ -149,7 +149,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Author
 
-Denner Azevedo - [GitHub](https://github.com/dennercodes)
+Denner Rondinely - [GitHub](https://github.com/dennercodes)
 
 ## Acknowledgments
 

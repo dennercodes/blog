@@ -26,7 +26,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const translations = await getTranslatedPost(post);
 
   return (
-    <main className="flex flex-col flex-1 items-start justify-between max-w-[670px] mx-auto px-5 py-16 z-10">
+    <main className="flex flex-col flex-1 items-start justify-between max-w-4xl w-full mx-auto px-5 py-16 z-10">
       <div className="w-full">
         <h1 className="text-4xl font-bold mb-4">{frontmatter.title}</h1>
         {frontmatter.description && (

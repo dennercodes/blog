@@ -23,21 +23,28 @@ const socialLinks: SocialLink[] = [
 ];
 
 export function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="w-full bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 py-6 border-t border-border">
-      <div className="container flex max-w-[670px] items-center justify-center space-x-4 px-5 mx-auto">
-        {socialLinks.map(social => (
-          <Link
-            key={social.label}
-            href={social.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-button-secondary-bg text-button-secondary-text transition-colors hover:bg-button-hover"
-            aria-label={social.label}
-          >
-            <social.icon className="h-6 w-6" />
-          </Link>
-        ))}
+    <footer className="mt-auto w-full bg-header/80 backdrop-blur supports-[backdrop-filter]:bg-header/60">
+      <div className="container flex flex-col items-center justify-center max-w-[670px] mx-auto px-5 py-4">
+        <div className="flex items-center space-x-4 mb-4">
+          {socialLinks.map(social => (
+            <Link
+              key={social.label}
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-button-secondary-bg text-button-secondary-text transition-colors hover:bg-button-hover"
+              aria-label={social.label}
+            >
+              <social.icon className="h-5 w-5" />
+            </Link>
+          ))}
+        </div>
+        <p className="text-sm text-text-secondary">
+          © {currentYear} Denner Rondinely. All rights reserved.
+        </p>
       </div>
     </footer>
   );

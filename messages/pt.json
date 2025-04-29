@@ -11,9 +11,19 @@
     "projects": "Projetos"
   },
   "blog": {
-    "allPosts": "Todos os Posts",
+    "title": "Blog",
+    "description": "Minhas reflexões sobre desenvolvimento web, React, TypeScript e boas práticas.",
     "publishedOn": "Publicado em {date}",
-    "noPosts": "Nenhum post disponível ainda."
+    "readMore": "Ler mais",
+    "noTranslation": "Esta postagem não está disponível em {language}",
+    "viewIn": "Ver em {language}",
+    "noPosts": "Nenhuma postagem encontrada."
+  },
+  "home": {
+    "title": "Denner Rondinely",
+    "description": "Engenheiro de Software apaixonado por criar aplicações web bonitas e acessíveis. Escrevo sobre React, TypeScript e boas práticas de desenvolvimento web.",
+    "quote": "A melhor maneira de prever o futuro é criá-lo.",
+    "readBlog": "Ler meu blog"
   },
   "languageSelector": {
     "label": "Mudar idioma",

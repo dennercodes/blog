@@ -1,11 +1,11 @@
 'use client';
 
 import { usePathname, Link } from '@/i18n/navigation';
-import { PersonIcon } from '@radix-ui/react-icons';
 import { NavItem } from './types';
 import { useTranslations } from 'next-intl';
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
 import { LanguageSelector } from '@/components/language/LanguageSelector';
+import { Avatar } from '../ui/Avatar';
 
 const navItems: NavItem[] = [
   { label: 'Posts', href: '/posts' },
@@ -20,13 +20,13 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full bg-header backdrop-blur supports-[backdrop-filter]:bg-header/60">
       <div className="container mx-auto max-w-screen-2xl">
-        <div className="flex flex-col sm:flex-row items-center justify-between max-w-[670px] mx-auto px-5 py-2 sm:py-0">
+        <div className="flex flex-col sm:flex-row items-center justify-between max-w-4xl mx-auto px-5 py-2 sm:py-0">
           <div className="flex w-full sm:w-auto items-center justify-between">
             <Link
               href="/"
               className="flex items-center space-x-2 text-text-primary hover:text-link"
             >
-              <PersonIcon className="h-6 w-6" />
+              <Avatar initials="DR" />
             </Link>
 
             <div className="flex items-center space-x-2 sm:hidden">
@@ -35,7 +35,7 @@ export function Header() {
             </div>
           </div>
 
-          <nav className="flex items-center space-x-6 text-sm font-medium py-2 sm:py-4">
+          <nav className="flex items-center space-x-6 text-md font-medium py-2 sm:py-4">
             {navItems.map(item => (
               <Link
                 key={item.href}
