@@ -1,49 +1,29 @@
-name: Deploy
+name: Deploy Blog
+
 on:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+    branches:
+      - main # Roda só quando fizer push na main
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: 'yarn'
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-      - name: Run tests with coverage
-        run: yarn test:coverage
-      - name: Upload coverage reports
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-report
-          path: coverage/
-          retention-days: 30
 
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: '22'
-          cache: 'yarn'
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-      - name: Build
-        run: yarn build
-      - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          working-directory: ./
-          vercel-args: '--prod'
+          node-version: '20'
+
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Rodar build
+        run: npm run build
+
+      # Run tests
+      - name: Run tests
+        run: yarn test --run
