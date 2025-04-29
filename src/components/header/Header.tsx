@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { GearIcon, PersonIcon, SunIcon } from '@radix-ui/react-icons';
+import { PersonIcon, SunIcon } from '@radix-ui/react-icons';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { NavItem } from './types';
 
@@ -19,13 +19,12 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-header backdrop-blur supports-[backdrop-filter]:bg-header/60">
       <div className="container flex h-14 max-w-screen-2xl items-center">
-        <div className="flex flex-1 items-center justify-between">
-          {/* Logo/Profile */}
+        <div className="flex flex-1 items-center justify-between max-w-[670px] mx-auto px-5">
           <Link href={`/${lang}`} className="flex items-center space-x-2 text-text-primary hover:text-link">
             <PersonIcon className="h-6 w-6" />
           </Link>
 
-          {/* Navigation */}
+
           <nav className="flex items-center space-x-6 text-sm font-medium">
             {navItems.map((item) => (
               <Link
@@ -40,9 +39,7 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Right side controls */}
           <div className="flex items-center space-x-2">
-            {/* Theme toggle */}
             <button
               className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-button-secondary-bg text-button-secondary-text hover:bg-button-hover"
               onClick={() => {/* Add theme toggle logic */}}
@@ -50,7 +47,6 @@ export function Header() {
               <SunIcon className="h-4 w-4" />
             </button>
 
-            {/* Language selector */}
             <DropdownMenu.Root>
               <DropdownMenu.Trigger className="inline-flex h-9 px-3 items-center justify-center rounded-md bg-button-secondary-bg text-button-secondary-text hover:bg-button-hover">
                 {lang === 'pt' ? 'Português' : 'English'}
@@ -70,11 +66,6 @@ export function Header() {
                 </DropdownMenu.Content>
               </DropdownMenu.Portal>
             </DropdownMenu.Root>
-
-            {/* Settings */}
-            <button className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-button-secondary-bg text-button-secondary-text hover:bg-button-hover">
-              <GearIcon className="h-4 w-4" />
-            </button>
           </div>
         </div>
       </div>
