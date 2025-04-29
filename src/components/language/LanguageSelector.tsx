@@ -20,7 +20,7 @@ export function LanguageSelector({ 'data-testid': dataTestId }: LanguageSelector
     <DropdownMenu.Root>
       <DropdownMenu.Trigger
         data-testid={dataTestId}
-        className="inline-flex h-9 w-[52px] items-center justify-center rounded-md bg-button-secondary-bg text-button-secondary-text hover:bg-button-hover"
+        className="inline-flex h-9 min-w-[70px] items-center justify-center rounded-md bg-button-secondary-bg text-button-secondary-text hover:bg-button-hover px-4"
       >
         {t(`languages.${locale}`)}
       </DropdownMenu.Trigger>
@@ -28,7 +28,7 @@ export function LanguageSelector({ 'data-testid': dataTestId }: LanguageSelector
         <DropdownMenu.Content
           align="end"
           sideOffset={8}
-          className="z-50 min-w-[120px] overflow-hidden rounded-md border border-border bg-popover p-1 shadow-md animate-in data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2"
+          className="z-50 min-w-[120px] overflow-hidden rounded-md border border-border dark:bg-zinc-900 bg-white text-foreground p-1 shadow-md animate-in data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2"
         >
           <DropdownMenu.Item
             data-testid="language-option-en"
