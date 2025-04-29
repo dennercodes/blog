@@ -8,13 +8,13 @@
     "about": "About",
     "blog": "Blog",
     "posts": "Posts",
-    "projects": "Projects",
-    "languageSelector": {
-      "label": "Change language",
-      "languages": {
-        "en": "EN",
-        "pt": "PT"
-      }
+    "projects": "Projects"
+  },
+  "languageSelector": {
+    "label": "Change language",
+    "languages": {
+      "en": "EN",
+      "pt": "PT"
     }
   },
   "footer": {

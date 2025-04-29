@@ -1,11 +1,11 @@
 'use client';
 
-import { usePathname, Link, useRouter } from '@/i18n/navigation';
+import { usePathname, Link } from '@/i18n/navigation';
 import { PersonIcon } from '@radix-ui/react-icons';
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { NavItem } from './types';
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
+import { LanguageSelector } from '@/components/language/LanguageSelector';
 
 const navItems: NavItem[] = [
   { label: 'Posts', href: '/posts' },
@@ -15,13 +15,7 @@ const navItems: NavItem[] = [
 
 export function Header() {
   const pathname = usePathname();
-  const locale = useLocale();
-  const router = useRouter();
   const t = useTranslations('navigation');
-
-  const handleLocaleChange = (newLocale: string) => {
-    router.replace(pathname, { locale: newLocale });
-  };
 
   return (
     <header className="sticky top-0 z-50 w-full bg-header backdrop-blur supports-[backdrop-filter]:bg-header/60 flex items-center justify-center">
@@ -47,28 +41,7 @@ export function Header() {
 
           <div className="flex items-center space-x-2">
             <ThemeToggle />
-
-            <DropdownMenu.Root>
-              <DropdownMenu.Trigger className="inline-flex h-9 px-3 items-center justify-center rounded-md bg-button-secondary-bg text-button-secondary-text hover:bg-button-hover">
-                {t(`languageSelector.languages.${locale}`)}
-              </DropdownMenu.Trigger>
-              <DropdownMenu.Portal>
-                <DropdownMenu.Content className="min-w-[120px] rounded-md border border-border bg-card p-1 shadow-md">
-                  <DropdownMenu.Item
-                    className="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm text-text-secondary outline-none hover:bg-button-hover hover:text-text-primary"
-                    onClick={() => handleLocaleChange('en')}
-                  >
-                    {t('languageSelector.languages.en')}
-                  </DropdownMenu.Item>
-                  <DropdownMenu.Item
-                    className="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm text-text-secondary outline-none hover:bg-button-hover hover:text-text-primary"
-                    onClick={() => handleLocaleChange('pt')}
-                  >
-                    {t('languageSelector.languages.pt')}
-                  </DropdownMenu.Item>
-                </DropdownMenu.Content>
-              </DropdownMenu.Portal>
-            </DropdownMenu.Root>
+            <LanguageSelector />
           </div>
         </div>
       </div>

@@ -2,13 +2,13 @@
   "navigation": {
     "posts": "Posts",
     "about": "Sobre",
-    "projects": "Projetos",
-    "languageSelector": {
-      "label": "Mudar idioma",
-      "languages": {
-        "en": "EN",
-        "pt": "PT"
-      }
+    "projects": "Projetos"
+  },
+  "languageSelector": {
+    "label": "Mudar idioma",
+    "languages": {
+      "en": "EN",
+      "pt": "PT"
     }
   },
   "home": {
