@@ -20,7 +20,8 @@
     "languages": {
       "en": "EN",
       "pt": "PT"
-    }
+    },
+    "notAvailable": "Versão em {language} não disponível"
   },
   "footer": {
     "socialLinks": {
