@@ -29,27 +29,21 @@ Em vez de lutar contra essas restrições, podemos inverter nossa API do avesso.
 
 ## Exemplo
 
-```tsx
-type Sucesso = { status: 'success'; data: User[] };
-type Carregando = { status: 'loading' };
-type Erro = { status: 'error'; error: string };
+```typescript
+type Sucesso = { status: 'success'; data: User[] }
+type Carregando = { status: 'loading' }
+type Erro = { status: 'error'; error: string }
 
-type Estado = Sucesso | Carregando | Erro;
+type Estado = Sucesso | Carregando | Erro
 
 function ListaUsuarios({ state }: { state: Estado }) {
   switch (state.status) {
     case 'success':
-      return (
-        <ul>
-          {state.data.map(user => (
-            <li key={user.id}>{user.name}</li>
-          ))}
-        </ul>
-      );
+      return <ul>{state.data.map(user => <li key={user.id}>{user.name}</li>)}</ul>
     case 'loading':
-      return <Spinner />;
+      return <Spinner />
     case 'error':
-      return <MensagemErro>{state.error}</MensagemErro>;
+      return <MensagemErro>{state.error}</MensagemErro>
   }
 }
 ```

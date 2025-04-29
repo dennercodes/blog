@@ -1,11 +1,7 @@
 import { getBlogPost } from '@/utils/mdx';
+import { MdxContent } from '@/components/mdx/MdxContent';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
-import { compileMDX } from 'next-mdx-remote/rsc';
-import rehypeHighlight from 'rehype-highlight';
-import rehypeSlug from 'rehype-slug';
-import remarkGfm from 'remark-gfm';
-import 'highlight.js/styles/github-dark.css';
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -24,19 +20,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
-  const { content: mdxSource, frontmatter } = post;
-
-  const { content } = await compileMDX({
-    source: mdxSource,
-    options: {
-      parseFrontmatter: false,
-      mdxOptions: {
-        remarkPlugins: [remarkGfm],
-        rehypePlugins: [rehypeSlug, [rehypeHighlight, { ignoreMissing: true }]],
-        format: 'mdx',
-      },
-    },
-  });
+  const { content, frontmatter } = post;
 
   return (
     <main className="flex flex-col flex-1 items-start justify-between max-w-[670px] mx-auto px-5 py-16 z-10">
@@ -51,7 +35,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </p>
         )}
         <div className="flex gap-2 mb-8">
-          {frontmatter.tags?.map((tag: string) => (
+          {frontmatter.tags?.map(tag => (
             <span
               key={tag}
               className="px-2 py-1 bg-background-secondary text-text-secondary rounded-md text-sm"
@@ -60,9 +44,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </span>
           ))}
         </div>
-        <article className="prose prose-slate dark:prose-invert max-w-none prose-headings:scroll-mt-20 prose-headings:font-display prose-headings:font-bold prose-a:text-link hover:prose-a:text-link/80 prose-pre:bg-background-secondary prose-pre:border prose-pre:border-border">
-          {content}
-        </article>
+        <MdxContent>{content}</MdxContent>
       </div>
     </main>
   );

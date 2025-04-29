@@ -18,11 +18,6 @@ vi.mock('next-intl', () => ({
   useLocale: () => 'en',
 }));
 
-// Mock getTranslatedPath
-vi.mock('@/utils/navigation', () => ({
-  getTranslatedPath: vi.fn().mockResolvedValue('/en'),
-}));
-
 // Mock Radix UI dropdown menu
 vi.mock('@radix-ui/react-dropdown-menu', () => ({
   Root: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
@@ -46,7 +41,7 @@ describe('LanguageSelector', () => {
     expect(languageSelector).toBeInTheDocument();
   });
 
-  it('changes locale when language is selected', async () => {
+  it('changes locale when language is selected', () => {
     render(<LanguageSelector />);
 
     const languageSelector = screen.getByRole('button', { name: 'languages.en' });
@@ -55,9 +50,6 @@ describe('LanguageSelector', () => {
     const ptOption = screen.getByText('languages.pt');
     fireEvent.click(ptOption);
 
-    // Wait for the async handleLocaleChange to complete
-    await vi.waitFor(() => {
-      expect(mockReplace).toHaveBeenCalledWith('/en', { locale: 'pt' });
-    });
+    expect(mockReplace).toHaveBeenCalledWith('/en', { locale: 'pt' });
   });
 });

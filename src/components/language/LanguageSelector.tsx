@@ -1,9 +1,6 @@
-'use client';
-
 import { usePathname, useRouter } from '@/i18n/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import { getTranslatedPath } from '@/utils/navigation';
 
 interface LanguageSelectorProps {
   'data-testid'?: string;
@@ -15,9 +12,8 @@ export function LanguageSelector({ 'data-testid': dataTestId }: LanguageSelector
   const router = useRouter();
   const t = useTranslations('languageSelector');
 
-  const handleLocaleChange = async (newLocale: string) => {
-    const translatedPath = await getTranslatedPath(pathname, locale, newLocale);
-    router.replace(translatedPath, { locale: newLocale });
+  const handleLocaleChange = (newLocale: string) => {
+    router.replace(pathname, { locale: newLocale });
   };
 
   return (
