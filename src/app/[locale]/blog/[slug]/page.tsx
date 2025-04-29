@@ -1,7 +1,8 @@
-import { getBlogPost } from '@/utils/mdx';
+import { getBlogPost, getTranslatedPost } from '@/utils/mdx';
 import { MdxContent } from '@/components/mdx/MdxContent';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
+import { PostLanguageSelector } from '@/components/language/PostLanguageSelector';
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -21,6 +22,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   const { content, frontmatter } = post;
+  const translations = await getTranslatedPost(post);
 
   return (
     <main className="flex flex-col flex-1 items-start justify-between max-w-[670px] mx-auto px-5 py-16 z-10">
@@ -45,6 +47,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           ))}
         </div>
         <MdxContent>{content}</MdxContent>
+        <PostLanguageSelector translations={translations} currentLocale={locale} />
       </div>
     </main>
   );
