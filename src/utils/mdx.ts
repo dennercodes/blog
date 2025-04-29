@@ -4,6 +4,7 @@ import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 import { promises as fs } from 'fs';
 import path from 'path';
+import { routing } from '@/i18n/routing';
 
 export interface MdxContent {
   content: React.ReactElement;
@@ -13,6 +14,7 @@ export interface MdxContent {
     date?: string;
     tags?: string[];
     locale: string;
+    originalTitle?: string;
     [key: string]: string | string[] | undefined;
   };
 }
@@ -44,9 +46,11 @@ export async function processMdx(source: string): Promise<MdxContent> {
   };
 }
 
-export async function getBlogPost(slug: string, locale: string): Promise<MdxContent | null> {
+async function findPostInDirectory(
+  postsDirectory: string,
+  slug: string
+): Promise<MdxContent | null> {
   try {
-    const postsDirectory = path.join(process.cwd(), 'src/content/blog', locale);
     const files = await fs.readdir(postsDirectory);
 
     for (const file of files) {
@@ -56,7 +60,13 @@ export async function getBlogPost(slug: string, locale: string): Promise<MdxCont
       const source = await fs.readFile(filePath, 'utf8');
       const post = await processMdx(source);
 
+      // Verifica o slug do título atual
       if (slugify(post.frontmatter.title) === slug) {
+        return post;
+      }
+
+      // Verifica o slug do título original
+      if (post.frontmatter.originalTitle && slugify(post.frontmatter.originalTitle) === slug) {
         return post;
       }
     }
@@ -65,6 +75,79 @@ export async function getBlogPost(slug: string, locale: string): Promise<MdxCont
   } catch {
     return null;
   }
+}
+
+export async function getBlogPost(slug: string, locale: string): Promise<MdxContent | null> {
+  // Primeiro tenta encontrar no locale atual
+  const currentLocalePost = await findPostInDirectory(
+    path.join(process.cwd(), 'src/content/blog', locale),
+    slug
+  );
+
+  if (currentLocalePost) {
+    return currentLocalePost;
+  }
+
+  // Se não encontrou, procura em todos os outros locales
+  for (const targetLocale of routing.locales) {
+    if (targetLocale === locale) continue;
+
+    const post = await findPostInDirectory(
+      path.join(process.cwd(), 'src/content/blog', targetLocale),
+      slug
+    );
+
+    if (post) {
+      // Se encontrou o post em outro locale, procura a versão correspondente no locale desejado
+      const originalTitle = post.frontmatter.originalTitle || post.frontmatter.title;
+      const translatedPost = await findPostInDirectory(
+        path.join(process.cwd(), 'src/content/blog', locale),
+        slugify(originalTitle)
+      );
+
+      return translatedPost;
+    }
+  }
+
+  return null;
+}
+
+export async function getTranslatedPost(
+  currentPost: MdxContent
+): Promise<{ [key: string]: string | null }> {
+  const translations: { [key: string]: string | null } = {};
+  const currentOriginalTitle =
+    currentPost.frontmatter.originalTitle || currentPost.frontmatter.title;
+
+  for (const targetLocale of routing.locales) {
+    if (targetLocale === currentPost.frontmatter.locale) {
+      continue;
+    }
+
+    try {
+      const postsDirectory = path.join(process.cwd(), 'src/content/blog', targetLocale);
+      const files = await fs.readdir(postsDirectory);
+
+      for (const file of files) {
+        if (!file.endsWith('.mdx')) continue;
+
+        const filePath = path.join(postsDirectory, file);
+        const source = await fs.readFile(filePath, 'utf8');
+        const post = await processMdx(source);
+
+        const targetOriginalTitle = post.frontmatter.originalTitle || post.frontmatter.title;
+
+        if (targetOriginalTitle === currentOriginalTitle) {
+          translations[targetLocale] = slugify(post.frontmatter.title);
+          break;
+        }
+      }
+    } catch {
+      translations[targetLocale] = null;
+    }
+  }
+
+  return translations;
 }
 
 export async function getAllPosts(locale: string): Promise<MdxContent[]> {
