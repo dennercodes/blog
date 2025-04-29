@@ -17,11 +17,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
 
-      - name: Instalar dependências
-        run: npm install
+      - name: Install dependencies
+        run: |
+          npm install -g node-gyp
+          npm ci
 
-      - name: Rodar build
+      - name: Rebuild native dependencies
+        run: npm rebuild
+
+      - name: Build project
         run: npm run build
 
       # Run tests
