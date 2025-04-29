@@ -45,4 +45,4 @@ export const theme = {
       hover: '#B7AFFF',
     },
   },
-} as const 
+} as const;

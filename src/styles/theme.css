@@ -1,6 +1,6 @@
-@import "tailwindcss/preflight";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/preflight';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 @layer base {
   :root {
@@ -30,4 +30,4 @@
     --card: 222.2 84% 4.9%;
     --border: 217.2 32.6% 17.5%;
   }
-} 
+}

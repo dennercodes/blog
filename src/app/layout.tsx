@@ -6,10 +6,6 @@ export const metadata: Metadata = {
   description: 'A place where I share my thoughts and experiences',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return children;
 }

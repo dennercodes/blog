@@ -5,7 +5,7 @@ import { Footer } from './Footer';
 describe('Footer', () => {
   it('renders social media links', () => {
     render(<Footer />);
-    
+
     expect(screen.getByLabelText('LinkedIn')).toHaveAttribute(
       'href',
       'https://www.linkedin.com/in/denner-rondinely-da-silva'
@@ -22,11 +22,11 @@ describe('Footer', () => {
 
   it('renders links with correct attributes', () => {
     render(<Footer />);
-    
+
     const links = screen.getAllByRole('link');
     links.forEach(link => {
       expect(link).toHaveAttribute('target', '_blank');
       expect(link).toHaveAttribute('rel', 'noopener noreferrer');
     });
   });
-}); 
+});

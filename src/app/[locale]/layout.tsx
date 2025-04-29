@@ -11,10 +11,7 @@ type BlogLayoutProps = {
   params: Promise<{ locale: string }>;
 };
 
-export default async function BlogLayout({
-  children,
-  params,
-}: BlogLayoutProps) {
+export default async function BlogLayout({ children, params }: BlogLayoutProps) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) {
     notFound();

@@ -32,7 +32,7 @@ export function Header() {
           </Link>
 
           <nav className="flex items-center space-x-6 text-sm font-medium">
-            {navItems.map((item) => (
+            {navItems.map(item => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -54,13 +54,13 @@ export function Header() {
               </DropdownMenu.Trigger>
               <DropdownMenu.Portal>
                 <DropdownMenu.Content className="min-w-[120px] rounded-md border border-border bg-card p-1 shadow-md">
-                  <DropdownMenu.Item 
+                  <DropdownMenu.Item
                     className="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm text-text-secondary outline-none hover:bg-button-hover hover:text-text-primary"
                     onClick={() => handleLocaleChange('en')}
                   >
                     {t('languageSelector.languages.en')}
                   </DropdownMenu.Item>
-                  <DropdownMenu.Item 
+                  <DropdownMenu.Item
                     className="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm text-text-secondary outline-none hover:bg-button-hover hover:text-text-primary"
                     onClick={() => handleLocaleChange('pt')}
                   >
@@ -74,4 +74,4 @@ export function Header() {
       </div>
     </header>
   );
-} 
+}

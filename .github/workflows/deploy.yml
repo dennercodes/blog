@@ -3,7 +3,7 @@ name: Deploy Blog
 on:
   push:
     branches:
-      - main  # Roda só quando fizer push na main
+      - main # Roda só quando fizer push na main
 
 jobs:
   build:

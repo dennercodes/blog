@@ -26,7 +26,7 @@ export function Footer() {
   return (
     <footer className="w-full bg-header py-6 fixed bottom-0 left-0 right-0">
       <div className="container flex max-w-[670px] items-center justify-center space-x-4 px-5 mx-auto">
-        {socialLinks.map((social) => (
+        {socialLinks.map(social => (
           <Link
             key={social.label}
             href={social.href}
@@ -41,4 +41,4 @@ export function Footer() {
       </div>
     </footer>
   );
-} 
+}

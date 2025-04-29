@@ -26,13 +26,11 @@ export function ThemeToggle() {
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
     >
       <span className="sr-only">Toggle theme</span>
-      {
-        theme === 'dark' ? (
-          <SunIcon className="h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-        ) : (
-          <MoonIcon className="h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-        )
-      }
+      {theme === 'dark' ? (
+        <SunIcon className="h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+      ) : (
+        <MoonIcon className="h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+      )}
     </button>
   );
-} 
+}
