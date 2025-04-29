@@ -4,11 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { GearIcon, PersonIcon, SunIcon } from '@radix-ui/react-icons';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-
-interface NavItem {
-  label: string;
-  href: string;
-}
+import { NavItem } from './types';
 
 const navItems: NavItem[] = [
   { label: 'Posts', href: '/posts' },
