@@ -1,6 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Header } from './Header';
-import { ThemeProvider } from '@/providers/ThemeProvider';
+import { LanguageSelector } from './LanguageSelector';
 import { vi } from 'vitest';
 import { ComponentProps } from 'react';
 
@@ -12,7 +11,6 @@ vi.mock('@/i18n/navigation', () => ({
   useRouter: () => ({
     replace: mockReplace,
   }),
-  Link: ({ children, ...props }: ComponentProps<'a'>) => <a {...props}>{children}</a>,
 }));
 
 vi.mock('next-intl', () => ({
@@ -35,63 +33,16 @@ vi.mock('@radix-ui/react-dropdown-menu', () => ({
   ),
 }));
 
-describe('Header', () => {
-  it('renders the header with navigation links', () => {
-    render(
-      <ThemeProvider>
-        <Header />
-      </ThemeProvider>
-    );
-
-    expect(screen.getByRole('banner')).toBeInTheDocument();
-    expect(screen.getByRole('navigation')).toBeInTheDocument();
-    expect(screen.getByText('posts')).toBeInTheDocument();
-    expect(screen.getByText('about')).toBeInTheDocument();
-    expect(screen.getByText('projects')).toBeInTheDocument();
-  });
-
-  it('renders the theme toggle button', () => {
-    render(
-      <ThemeProvider>
-        <Header />
-      </ThemeProvider>
-    );
-
-    const themeToggle = screen.getByRole('button', { name: /toggle theme/i });
-    expect(themeToggle).toBeInTheDocument();
-  });
-
-  it('toggles theme when theme button is clicked', () => {
-    render(
-      <ThemeProvider>
-        <Header />
-      </ThemeProvider>
-    );
-
-    const themeToggle = screen.getByRole('button', { name: /toggle theme/i });
-    fireEvent.click(themeToggle);
-
-    const html = document.documentElement;
-    expect(html.classList.contains('dark')).toBe(true);
-  });
-
-  it('renders the language selector', () => {
-    render(
-      <ThemeProvider>
-        <Header />
-      </ThemeProvider>
-    );
+describe('LanguageSelector', () => {
+  it('renders the language selector button', () => {
+    render(<LanguageSelector />);
 
     const languageSelector = screen.getByRole('button', { name: 'languages.en' });
     expect(languageSelector).toBeInTheDocument();
   });
 
   it('changes locale when language is selected', () => {
-    render(
-      <ThemeProvider>
-        <Header />
-      </ThemeProvider>
-    );
+    render(<LanguageSelector />);
 
     const languageSelector = screen.getByRole('button', { name: 'languages.en' });
     fireEvent.click(languageSelector);
