@@ -8,10 +8,10 @@ import remarkGfm from 'remark-gfm';
 import 'highlight.js/styles/github-dark.css';
 
 interface BlogPostPageProps {
-  params: {
+  params: Promise<{
     slug: string;
     locale: string;
-  };
+  }>;
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
