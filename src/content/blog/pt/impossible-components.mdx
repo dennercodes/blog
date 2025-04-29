@@ -1,0 +1,57 @@
+---
+title: Componentes Impossíveis
+description: Invertendo sua API do avesso.
+date: '2024-03-23'
+tags: ['react', 'arquitetura', 'typescript']
+locale: 'pt'
+---
+
+# Componentes Impossíveis
+
+Ao construir aplicações React, frequentemente encontramos componentes que parecem impossíveis de implementar corretamente. Esses componentes desafiam nossa compreensão sobre design de componentes e nos forçam a pensar diferente sobre nossas APIs.
+
+## O Problema
+
+APIs tradicionais de componentes geralmente seguem um padrão onde passamos props e esperamos que o componente renderize algo baseado nessas props. Mas o que acontece quando precisamos construir componentes que:
+
+- Precisam manter estado interno complexo
+- Têm múltiplos estados válidos mas mutuamente exclusivos
+- Requerem ordenação estrita de operações
+- Precisam garantir invariantes através de múltiplas renderizações
+
+## A Solução: APIs do Avesso
+
+Em vez de lutar contra essas restrições, podemos inverter nossa API do avesso. Isso significa:
+
+1. Abraçar máquinas de estado
+2. Usar uniões discriminadas
+3. Tornar estados impossíveis impossíveis de representar
+
+## Exemplo
+
+```tsx
+type Sucesso = { status: 'success'; data: User[] };
+type Carregando = { status: 'loading' };
+type Erro = { status: 'error'; error: string };
+
+type Estado = Sucesso | Carregando | Erro;
+
+function ListaUsuarios({ state }: { state: Estado }) {
+  switch (state.status) {
+    case 'success':
+      return (
+        <ul>
+          {state.data.map(user => (
+            <li key={user.id}>{user.name}</li>
+          ))}
+        </ul>
+      );
+    case 'loading':
+      return <Spinner />;
+    case 'error':
+      return <MensagemErro>{state.error}</MensagemErro>;
+  }
+}
+```
+
+Ao projetar nossos componentes dessa forma, tornamos impossível representar estados inválidos em nossa aplicação.

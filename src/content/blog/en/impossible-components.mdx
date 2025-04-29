@@ -1,0 +1,51 @@
+---
+title: Impossible Components
+description: Turning your API inside-out.
+date: '2024-03-23'
+tags: ['react', 'architecture', 'typescript']
+locale: 'en'
+---
+
+# Impossible Components
+
+When building React applications, we often encounter components that seem impossible to implement correctly. These components challenge our understanding of component design and force us to think differently about our APIs.
+
+## The Problem
+
+Traditional component APIs often follow a pattern where we pass down props and expect the component to render something based on those props. But what happens when we need to build components that:
+
+- Need to maintain complex internal state
+- Have multiple valid but mutually exclusive states
+- Require strict ordering of operations
+- Need to enforce invariants across multiple renders
+
+## The Solution: Inside-Out APIs
+
+Instead of fighting against these constraints, we can turn our API inside-out. This means:
+
+1. Embracing state machines
+2. Using discriminated unions
+3. Making impossible states impossible to represent
+
+## Example
+
+```typescript
+type Success = { status: 'success'; data: User[] }
+type Loading = { status: 'loading' }
+type Error = { status: 'error'; error: string }
+
+type State = Success | Loading | Error
+
+function UserList({ state }: { state: State }) {
+  switch (state.status) {
+    case 'success':
+      return <ul>{state.data.map(user => <li key={user.id}>{user.name}</li>)}</ul>
+    case 'loading':
+      return <Spinner />
+    case 'error':
+      return <ErrorMessage>{state.error}</ErrorMessage>
+  }
+}
+```
+
+By designing our components this way, we make it impossible to represent invalid states in our application.
