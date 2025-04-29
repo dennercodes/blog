@@ -1,36 +1,165 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# My Blog
+
+[![Next.js](https://img.shields.io/badge/Next.js-13.5-black?style=flat-square&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.0-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
+[![Vitest](https://img.shields.io/badge/Vitest-3.1-green?style=flat-square&logo=vitest)](https://vitest.dev/)
+[![next-intl](https://img.shields.io/badge/next--intl-4.1-orange?style=flat-square)](https://next-intl-docs.vercel.app/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+
+A personal blog built with Next.js and next-intl, featuring internationalization (i18n), dark mode support, and MDX content.
+
+## Features
+
+- 🌐 Internationalization (i18n) with next-intl
+- 🌓 Dark mode support with next-themes
+- 📝 MDX blog posts with syntax highlighting
+- 🎨 Tailwind CSS for styling
+- 🧪 Testing with Vitest and Testing Library
+- 📱 Responsive design
+- ⚡ Fast page loads with Next.js App Router
+- 🔍 SEO optimized
+
+## Tech Stack
+
+- [Next.js](https://nextjs.org/) - React framework
+- [TypeScript](https://www.typescriptlang.org/) - Type safety
+- [next-intl](https://next-intl-docs.vercel.app/) - Internationalization
+- [next-themes](https://github.com/pacocoursey/next-themes) - Dark mode
+- [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote) - MDX support
+- [Tailwind CSS](https://tailwindcss.com/) - Styling
+- [Radix UI](https://www.radix-ui.com/) - Accessible components
+- [Vitest](https://vitest.dev/) - Testing
+- [Testing Library](https://testing-library.com/) - Testing utilities
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18.x or later
+- npm or yarn
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/dennercodes/blog.git
+cd blog
+```
+
+### Install Dependencies
+
+Using npm:
+
+```bash
+npm install
+```
+
+Or using yarn:
+
+```bash
+yarn install
+```
+
+### Environment Variables
+
+Create a `.env.local` file in the root directory:
+
+```env
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+```
+
+### Development
+
+Run the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm run test` - Run tests
+- `npm run test:ui` - Run tests with UI
+- `npm run test:coverage` - Run tests with coverage report
+- `npm run format` - Format code with Prettier
+- `npm run format:check` - Check code formatting
 
-## Learn More
+## Testing
 
-To learn more about Next.js, take a look at the following resources:
+The project uses Vitest and Testing Library for testing. Run tests with:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run test
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+For test coverage:
 
-## Deploy on Vercel
+```bash
+npm run test:coverage
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is deployed on [Vercel](https://vercel.com). The deployment process is automatically triggered when changes are pushed to the main branch.
+
+### Build Process
+
+Vercel automatically:
+
+1. Installs dependencies
+2. Runs the build command
+3. Runs tests
+4. Deploys if all checks pass
+
+### Environment Variables on Vercel
+
+Required environment variables for production:
+
+- `NEXT_PUBLIC_BASE_URL`: Your production URL
+
+## Project Structure
+
+```
+├── src/
+│   ├── app/                 # Next.js App Router pages
+│   ├── components/          # React components
+│   ├── content/
+│   │   └── blog/           # MDX blog posts
+│   ├── i18n/               # Internationalization setup
+│   ├── messages/           # Translation files
+│   ├── providers/          # React context providers
+│   └── utils/              # Utility functions
+├── public/                 # Static files
+├── tests/                  # Test setup and utilities
+└── package.json           # Project dependencies and scripts
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Author
+
+Denner Rondinely - [@dennercodes](https://github.com/dennercodes)
+
+## Acknowledgments
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [next-intl Documentation](https://next-intl-docs.vercel.app/)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
