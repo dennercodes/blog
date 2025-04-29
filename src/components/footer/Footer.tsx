@@ -24,7 +24,7 @@ const socialLinks: SocialLink[] = [
 
 export function Footer() {
   return (
-    <footer className="w-full bg-header py-6 fixed bottom-0 left-0 right-0">
+    <footer className="w-full bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 py-6 border-t border-border">
       <div className="container flex max-w-[670px] items-center justify-center space-x-4 px-5 mx-auto">
         {socialLinks.map(social => (
           <Link

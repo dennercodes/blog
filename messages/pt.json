@@ -1,8 +1,19 @@
 {
+  "common": {
+    "welcome": "Bem-vindo ao meu blog",
+    "description": "Um blog pessoal construído com Next.js e next-intl"
+  },
   "navigation": {
-    "posts": "Posts",
+    "home": "Início",
     "about": "Sobre",
+    "blog": "Blog",
+    "posts": "Posts",
     "projects": "Projetos"
+  },
+  "blog": {
+    "allPosts": "Todos os Posts",
+    "publishedOn": "Publicado em {date}",
+    "noPosts": "Nenhum post disponível ainda."
   },
   "languageSelector": {
     "label": "Mudar idioma",
@@ -10,10 +21,6 @@
       "en": "EN",
       "pt": "PT"
     }
-  },
-  "home": {
-    "title": "Bem-vindo ao meu blog",
-    "description": "Um lugar onde compartilho meus pensamentos e experiências"
   },
   "footer": {
     "socialLinks": {

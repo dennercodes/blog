@@ -10,6 +10,11 @@
     "posts": "Posts",
     "projects": "Projects"
   },
+  "blog": {
+    "allPosts": "All Posts",
+    "publishedOn": "Published on {date}",
+    "noPosts": "No posts available yet."
+  },
   "languageSelector": {
     "label": "Change language",
     "languages": {

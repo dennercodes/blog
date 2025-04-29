@@ -23,11 +23,11 @@ export default async function BlogLayout({ children, params }: BlogLayoutProps) 
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body>
+      <body className="min-h-screen flex flex-col bg-background">
         <ThemeProvider>
           <NextIntlClientProvider>
             <Header />
-            {children}
+            <main className="flex-1 pb-28">{children}</main>
             <Footer />
           </NextIntlClientProvider>
         </ThemeProvider>
