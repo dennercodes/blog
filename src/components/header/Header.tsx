@@ -17,11 +17,11 @@ export function Header() {
   const lang = pathname.split('/')[1] || 'en';
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-header backdrop-blur supports-[backdrop-filter]:bg-header/60">
       <div className="container flex h-14 max-w-screen-2xl items-center">
         <div className="flex flex-1 items-center justify-between">
           {/* Logo/Profile */}
-          <Link href={`/${lang}`} className="flex items-center space-x-2">
+          <Link href={`/${lang}`} className="flex items-center space-x-2 text-text-primary hover:text-link">
             <PersonIcon className="h-6 w-6" />
           </Link>
 
@@ -31,8 +31,8 @@ export function Header() {
               <Link
                 key={item.href}
                 href={`/${lang}${item.href}`}
-                className={`transition-colors hover:text-foreground/80 ${
-                  pathname.includes(item.href) ? 'text-foreground' : 'text-foreground/60'
+                className={`transition-colors hover:text-link ${
+                  pathname.includes(item.href) ? 'text-text-primary' : 'text-text-secondary'
                 }`}
               >
                 {item.label}
@@ -44,7 +44,7 @@ export function Header() {
           <div className="flex items-center space-x-2">
             {/* Theme toggle */}
             <button
-              className="inline-flex h-9 w-9 items-center justify-center rounded-md hover:bg-accent hover:text-accent-foreground"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-button-secondary-bg text-button-secondary-text hover:bg-button-hover"
               onClick={() => {/* Add theme toggle logic */}}
             >
               <SunIcon className="h-4 w-4" />
@@ -52,17 +52,17 @@ export function Header() {
 
             {/* Language selector */}
             <DropdownMenu.Root>
-              <DropdownMenu.Trigger className="inline-flex h-9 px-3 items-center justify-center rounded-md hover:bg-accent hover:text-accent-foreground">
+              <DropdownMenu.Trigger className="inline-flex h-9 px-3 items-center justify-center rounded-md bg-button-secondary-bg text-button-secondary-text hover:bg-button-hover">
                 {lang === 'pt' ? 'Português' : 'English'}
               </DropdownMenu.Trigger>
               <DropdownMenu.Portal>
-                <DropdownMenu.Content className="min-w-[120px] rounded-md border bg-popover p-1 shadow-md">
-                  <DropdownMenu.Item className="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none hover:bg-accent hover:text-accent-foreground">
+                <DropdownMenu.Content className="min-w-[120px] rounded-md border border-border bg-card p-1 shadow-md">
+                  <DropdownMenu.Item className="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm text-text-secondary outline-none hover:bg-button-hover hover:text-text-primary">
                     <Link href={pathname.replace(/^\/[^\/]+/, '/en')} className="flex-1">
                       English
                     </Link>
                   </DropdownMenu.Item>
-                  <DropdownMenu.Item className="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none hover:bg-accent hover:text-accent-foreground">
+                  <DropdownMenu.Item className="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm text-text-secondary outline-none hover:bg-button-hover hover:text-text-primary">
                     <Link href={pathname.replace(/^\/[^\/]+/, '/pt')} className="flex-1">
                       Português
                     </Link>
@@ -72,7 +72,7 @@ export function Header() {
             </DropdownMenu.Root>
 
             {/* Settings */}
-            <button className="inline-flex h-9 w-9 items-center justify-center rounded-md hover:bg-accent hover:text-accent-foreground">
+            <button className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-button-secondary-bg text-button-secondary-text hover:bg-button-hover">
               <GearIcon className="h-4 w-4" />
             </button>
           </div>
