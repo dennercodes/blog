@@ -8,7 +8,7 @@ import { LanguageSelector } from '@/components/language/LanguageSelector';
 import { Avatar } from '../ui/Avatar';
 
 const navItems: NavItem[] = [
-  { label: 'Posts', href: '/posts' },
+  { label: 'Blog', href: '/blog' },
   { label: 'About', href: '/about' },
   { label: 'Projects', href: '/projects' },
 ];
