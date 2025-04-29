@@ -12,8 +12,8 @@
     "languageSelector": {
       "label": "Change language",
       "languages": {
-        "en": "English",
-        "pt": "Portuguese"
+        "en": "EN",
+        "pt": "PT"
       }
     }
   },

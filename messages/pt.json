@@ -6,8 +6,8 @@
     "languageSelector": {
       "label": "Mudar idioma",
       "languages": {
-        "en": "Inglês",
-        "pt": "Português"
+        "en": "EN",
+        "pt": "PT"
       }
     }
   },
