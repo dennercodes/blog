@@ -3,6 +3,7 @@ import { MdxContent } from '@/components/mdx/MdxContent';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { PostLanguageSelector } from '@/components/language/PostLanguageSelector';
+import { Tag } from '@/components/blog/Tag';
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -36,15 +37,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             {t('publishedOn', { date: new Date(frontmatter.date).toLocaleDateString(locale) })}
           </p>
         )}
-        <div className="flex gap-2 mb-8">
-          {frontmatter.tags?.map(tag => (
-            <span
-              key={tag}
-              className="px-2 py-1 bg-background-secondary text-text-secondary rounded-md text-sm"
-            >
-              {tag}
-            </span>
-          ))}
+        <div className="flex flex-wrap gap-2 mb-8">
+          {frontmatter.tags?.map(tag => <Tag key={tag} name={tag} />)}
         </div>
         <MdxContent>{content}</MdxContent>
         <PostLanguageSelector translations={translations} currentLocale={locale} />
