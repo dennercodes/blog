@@ -1,7 +1,3 @@
-import { compileMDX } from 'next-mdx-remote/rsc';
-import rehypeHighlight from 'rehype-highlight';
-import rehypeSlug from 'rehype-slug';
-import remarkGfm from 'remark-gfm';
 import { MdxPost } from '@/app/api/posts/route';
 
 export function slugify(text: string): string {
@@ -13,25 +9,7 @@ export function slugify(text: string): string {
     .replace(/(^-|-$)+/g, '');
 }
 
-export async function processMdx(source: string): Promise<MdxPost> {
-  const { content, frontmatter } = await compileMDX({
-    source,
-    options: {
-      parseFrontmatter: true,
-      mdxOptions: {
-        remarkPlugins: [remarkGfm],
-        rehypePlugins: [rehypeHighlight, rehypeSlug],
-      },
-    },
-  });
-
-  return {
-    content,
-    frontmatter: frontmatter as MdxPost['frontmatter'],
-  };
-}
-
-export async function getBlogPost(slug: string, locale: string): Promise<MdxContent | null> {
+export async function getBlogPost(slug: string, locale: string): Promise<MdxPost | null> {
   try {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
     const response = await fetch(`${baseUrl}/api/posts?locale=${locale}&slug=${slug}`);
@@ -43,7 +21,7 @@ export async function getBlogPost(slug: string, locale: string): Promise<MdxCont
   }
 }
 
-export async function getBlogPosts(locale: string): Promise<MdxContent[]> {
+export async function getBlogPosts(locale: string): Promise<MdxPost[]> {
   try {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
     const response = await fetch(`${baseUrl}/api/posts?locale=${locale}`);
@@ -55,6 +33,6 @@ export async function getBlogPosts(locale: string): Promise<MdxContent[]> {
   }
 }
 
-export async function getAllPosts(locale: string): Promise<MdxContent[]> {
+export async function getAllPosts(locale: string): Promise<MdxPost[]> {
   return getBlogPosts(locale);
 }
