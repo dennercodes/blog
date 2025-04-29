@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import typography from '@tailwindcss/typography';
 
 const config: Config = {
   darkMode: 'class',
@@ -35,9 +36,21 @@ const config: Config = {
         header: 'hsl(var(--header))',
         card: 'hsl(var(--card))',
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            'code::before': {
+              content: '""',
+            },
+            'code::after': {
+              content: '""',
+            },
+          },
+        },
+      },
     },
   },
-  plugins: [],
+  plugins: [typography],
 };
 
 export default config;

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'My Blog',
+  title: 'Denner Rondinely',
   description: 'A place where I share my thoughts and experiences',
   icons: {
     icon: [
