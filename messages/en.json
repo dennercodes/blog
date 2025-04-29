@@ -1,0 +1,27 @@
+{
+  "common": {
+    "welcome": "Welcome to my blog",
+    "description": "A personal blog built with Next.js and next-intl"
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "blog": "Blog",
+    "posts": "Posts",
+    "projects": "Projects",
+    "languageSelector": {
+      "label": "Change language",
+      "languages": {
+        "en": "English",
+        "pt": "Portuguese"
+      }
+    }
+  },
+  "footer": {
+    "socialLinks": {
+      "linkedin": "Visit my LinkedIn profile",
+      "instagram": "Follow me on Instagram",
+      "github": "Check my GitHub projects"
+    }
+  }
+} 

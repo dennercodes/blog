@@ -1,0 +1,25 @@
+{
+  "navigation": {
+    "posts": "Posts",
+    "about": "Sobre",
+    "projects": "Projetos",
+    "languageSelector": {
+      "label": "Mudar idioma",
+      "languages": {
+        "en": "Inglês",
+        "pt": "Português"
+      }
+    }
+  },
+  "home": {
+    "title": "Bem-vindo ao meu blog",
+    "description": "Um lugar onde compartilho meus pensamentos e experiências"
+  },
+  "footer": {
+    "socialLinks": {
+      "linkedin": "Visite meu perfil no LinkedIn",
+      "instagram": "Me siga no Instagram",
+      "github": "Veja meus projetos no GitHub"
+    }
+  }
+} 
