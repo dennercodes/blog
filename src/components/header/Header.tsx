@@ -1,10 +1,11 @@
 'use client';
 
 import { usePathname, Link, useRouter } from '@/i18n/navigation';
-import { PersonIcon, SunIcon } from '@radix-ui/react-icons';
+import { PersonIcon } from '@radix-ui/react-icons';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { NavItem } from './types';
 import { useTranslations, useLocale } from 'next-intl';
+import { ThemeToggle } from '@/components/theme/ThemeToggle';
 
 const navItems: NavItem[] = [
   { label: 'Posts', href: '/posts' },
@@ -45,12 +46,7 @@ export function Header() {
           </nav>
 
           <div className="flex items-center space-x-2">
-            <button
-              className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-button-secondary-bg text-button-secondary-text hover:bg-button-hover"
-              onClick={() => {/* Add theme toggle logic */}}
-            >
-              <SunIcon className="h-4 w-4" />
-            </button>
+            <ThemeToggle />
 
             <DropdownMenu.Root>
               <DropdownMenu.Trigger className="inline-flex h-9 px-3 items-center justify-center rounded-md bg-button-secondary-bg text-button-secondary-text hover:bg-button-hover">

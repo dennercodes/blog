@@ -21,5 +21,10 @@
       "instagram": "Me siga no Instagram",
       "github": "Veja meus projetos no GitHub"
     }
+  },
+  "theme": {
+    "light": "Claro",
+    "dark": "Escuro",
+    "system": "Sistema"
   }
 } 

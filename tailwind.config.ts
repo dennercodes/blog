@@ -1,24 +1,39 @@
 import type { Config } from 'tailwindcss'
-import { theme } from './src/styles/theme'
 
 const config: Config = {
+  darkMode: 'class',
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    container: {
+      center: true,
+      padding: '2rem',
+      screens: {
+        '2xl': '1400px',
+      },
+    },
     extend: {
       colors: {
-        background: theme.colors.background,
-        card: theme.colors.card,
-        header: theme.colors.header,
-        border: theme.colors.border,
-        text: theme.colors.text,
-        link: theme.colors.link,
-        button: theme.colors.button,
-        support: theme.colors.support,
-        accent: theme.colors.accent,
+        border: 'hsl(var(--border))',
+        background: {
+          DEFAULT: 'hsl(var(--background))',
+          secondary: 'hsl(var(--background-secondary))',
+        },
+        text: {
+          primary: 'hsl(var(--text-primary))',
+          secondary: 'hsl(var(--text-secondary))',
+        },
+        button: {
+          'secondary-bg': 'hsl(var(--button-secondary-bg))',
+          'secondary-text': 'hsl(var(--button-secondary-text))',
+          hover: 'hsl(var(--button-hover))',
+        },
+        link: 'hsl(var(--link))',
+        header: 'hsl(var(--header))',
+        card: 'hsl(var(--card))',
       },
     },
   },

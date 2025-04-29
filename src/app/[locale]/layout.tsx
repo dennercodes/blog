@@ -1,10 +1,10 @@
-
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { hasLocale } from 'next-intl';
 import { routing } from '@/i18n/routing';
+import { ThemeProvider } from '@/providers/ThemeProvider';
 
 type BlogLayoutProps = {
   children: React.ReactNode;
@@ -27,11 +27,13 @@ export default async function BlogLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body>
-        <NextIntlClientProvider>
-          <Header />
-          {children}
-          <Footer />
-        </NextIntlClientProvider>
+        <ThemeProvider>
+          <NextIntlClientProvider>
+            <Header />
+            {children}
+            <Footer />
+          </NextIntlClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
